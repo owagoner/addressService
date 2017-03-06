@@ -20,30 +20,20 @@ public class AddressServiceImpl implements AddressServiceCustom{
 		
 		for(Address a: addresses){
 			if(a.getBusinessId() == businessId){
+				a.setGoogleMapUrl(setGoogleMapUrl(a));
 				result.add(a);
 			}
 		}
 		return result;
 	}
 
-	@Override
-	public String getGoogleMapByBusinssId(long businessId) {
+    @Override
+	public String setGoogleMapUrl(Address a) {
 		
 		String url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCRbgB_gAIeZKN-Wc_soTa6n_xCijGayTY&center=";
 		//String key = "AIzaSyCRbgB_gAIeZKN-Wc_soTa6n_xCijGayTY";
-		
-		ArrayList<Address> result = new ArrayList<Address>();
-		
-	    Iterable<Address> addresses = addressService.findAll();	
-		
-		for(Address a: addresses){
-			if(a.getBusinessId() == businessId){
-				result.add(a);
-			}
-		}
-		
-		if(result.size() > 0){
-			Address a = result.get(0);
+
+		if(a.getLatitude() != 0 && a.getLongitude() != 0){
 			url = url + a.getLatitude() + "," + a.getLongitude();
 			return url;
 		}else{

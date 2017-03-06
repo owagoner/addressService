@@ -18,6 +18,7 @@ public class Address {
 	private String country;
 	private double latitude;
 	private double longitude;
+	private String googleMapUrl;
 
 	public Address() {
 	}
@@ -111,5 +112,13 @@ public class Address {
 
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+
+	public String getGoogleMapUrl() {
+		return googleMapUrl;
+	}
+
+	public void setGoogleMapUrl(String googleMapUrl) {
+		this.googleMapUrl = googleMapUrl;
 	}
 }

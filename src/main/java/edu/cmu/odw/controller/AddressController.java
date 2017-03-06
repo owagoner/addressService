@@ -17,17 +17,14 @@ public class AddressController {
 
 	@RequestMapping(value = "/api/address/{id}")
 	public Address address(@PathVariable("id") long id) {
-		return addressService.findOne(id);
+		Address a = addressService.findOne(id);
+		a.setGoogleMapUrl(addressService.setGoogleMapUrl(a));
+		return a;
 	}
 	
 	@RequestMapping(value = "/api/address/businessId/{id}")
 	public Iterable<Address> addressBusinessId(@PathVariable("id") long id) {
 		return addressService.findByBusinessId(id);
-	}
-	
-	@RequestMapping(value = "/api/address/map/businessId/{id}")
-	public String addressMapBusinessId(@PathVariable("id") long id) {
-		return addressService.getGoogleMapByBusinssId(id);
 	}
 	
 	@RequestMapping(value = "/api/address", method = RequestMethod.POST)
